@@ -4,7 +4,7 @@
     "title": "Pokemon-battle",
     "description": "Description"
   },
-  "host": "diogo-pokemon-battle.herokuapp.com/",
+  "host": "diogo-pokemon-battle.herokuapp.com",
   "basePath": "/",
   "tags": [],
   "schemes": [
