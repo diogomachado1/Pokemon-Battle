@@ -1,12 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const swaggerAutogen = require('swagger-autogen')();
 
+console.log(process.env.API_URL);
 const doc = {
   info: {
     title: 'Pokemon-battle',
     description: 'Description',
   },
-  host: 'localhost:3333',
+  host: process.env.API_URL || 'localhost:3333',
   schemes: ['http', 'https'],
   consumes: ['application/json'],
   produces: ['application/json'],
