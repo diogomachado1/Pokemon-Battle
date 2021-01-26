@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prestart": "babel ./src --out-dir dist --no-copy-ignored --copy-files  --extensions '.ts,.js'",
     "start": "node dist/app.js",
     "seed": "ts-node src/scripts/seeds",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts",
