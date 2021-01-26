@@ -1,0 +1,312 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pokemon-battle",
+    "description": "Description"
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {},
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/pokemons": {
+      "post": {
+        "tags": [
+          "Pokemon"
+        ],
+        "description": "Criar um pokemon",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados do pokemon",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/postPokemon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon Criado.",
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          },
+          "400": {
+            "description": "Erro na criação do pokemon."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Pokemon"
+        ],
+        "description": "Buscar todos os pokemons",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Pokemons.",
+            "schema": {
+              "$ref": "#/definitions/Pokemons"
+            }
+          }
+        }
+      }
+    },
+    "/pokemons/{id}": {
+      "put": {
+        "tags": [
+          "Pokemon"
+        ],
+        "description": "Alterar pokemon pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do pokemon."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados do pokemon",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/updatePokemon"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pokemon alterado."
+          },
+          "400": {
+            "description": "Erro na alteração do pokemon."
+          },
+          "404": {
+            "description": "Pokemon não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pokemon"
+        ],
+        "description": "Deletar pokemon pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do pokemon."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pokemon deletado."
+          },
+          "404": {
+            "description": "Pokemon não encontrado."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Pokemon"
+        ],
+        "description": "Buscar pokemon pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do pokemon."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon encontrado.",
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          },
+          "404": {
+            "description": "Pokemon não encontrado."
+          }
+        }
+      }
+    },
+    "/batalhar/{pokemonAId}/{pokemonBId}": {
+      "post": {
+        "tags": [
+          "Batalha"
+        ],
+        "description": "Batalha entre pokemons",
+        "parameters": [
+          {
+            "name": "pokemonAId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do pokemon A."
+          },
+          {
+            "name": "pokemonBId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do pokemon B."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon .",
+            "schema": {
+              "$ref": "#/definitions/BattleResult"
+            }
+          },
+          "404": {
+            "description": "Pokemon não encontrado."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pokemons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "treinador": {
+            "type": "string",
+            "example": "Diogo"
+          },
+          "tipo": {
+            "type": "string",
+            "example": "mewtwo"
+          },
+          "nivel": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      }
+    },
+    "Pokemon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "treinador": {
+          "type": "string",
+          "example": "Diogo"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "mewtwo"
+        },
+        "nivel": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    },
+    "postPokemon": {
+      "type": "object",
+      "properties": {
+        "treinador": {
+          "type": "string",
+          "example": "Diogo"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "mewtwo"
+        }
+      },
+      "required": [
+        "treinador",
+        "tipo"
+      ]
+    },
+    "updatePokemon": {
+      "type": "object",
+      "properties": {
+        "treinador": {
+          "type": "string",
+          "example": "Diogo"
+        }
+      },
+      "required": [
+        "treinador"
+      ]
+    },
+    "BattleResult": {
+      "type": "object",
+      "properties": {
+        "vencedor": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            },
+            "nivel": {
+              "type": "number",
+              "example": 2
+            },
+            "tipo": {
+              "type": "string",
+              "example": "mewtwo"
+            },
+            "treinador": {
+              "type": "string",
+              "example": "Diogo"
+            }
+          }
+        },
+        "perdedor": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 2
+            },
+            "nivel": {
+              "type": "number",
+              "example": 0
+            },
+            "tipo": {
+              "type": "string",
+              "example": "mewtwo"
+            },
+            "treinador": {
+              "type": "string",
+              "example": "Diogo"
+            }
+          }
+        }
+      }
+    }
+  }
+}
