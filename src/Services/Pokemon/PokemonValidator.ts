@@ -4,11 +4,11 @@ import Validator from '../../Libs/Validator';
 export default class PokemonValidator extends Validator {
   protected storePokemonSchema = Yup.object().shape({
     tipo: Yup.mixed().oneOf(['charizard', 'mewtwo', 'pikachu']).required(),
-    treinador: Yup.string().trim().required(),
+    treinador: Yup.string().max(50).trim().required(),
   });
 
   protected updatePokemonSchema = Yup.object().shape({
-    treinador: Yup.string().trim().required(),
+    treinador: Yup.string().max(50).trim().required(),
   });
 
   protected validId = Yup.object().shape({
